@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>
+      Na początku każdego dużego projektu pisze się proste CRUDy - prezentacja
+      by Krzysztof Morcinek
+    </title>
+
+    <meta
+      name="description"
+      content="Prelekcja Krzysztofa Morcinek na temat preprowadzania Code Review"
+    />
+    <meta name="author" content="Krzysztof Morcinek" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/white.css" id="theme" />
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? "css/print/pdf.css"
+        : "css/print/paper.css";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+      .alias-list li {
+        margin-bottom: 9px;
+      }
+
+      .alias-list li {
+        font-size: 70%;
+      }
+
+      .modifications-list li {
+        margin-bottom: 9px;
+      }
+
+      .good-terminal-list ul {
+        font-size: 61%;
+      }
+
+      .good-terminal-list li {
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>Na początku każdego dużego projektu pisze się proste CRUDy</h2>
+          <p style="float: right">
+            Na przykładzie Kitopi. Przejscie przez kilka faz zycia produktu.
+            Rozrost zespolu, dokladanie mikrososerwisów. Bottlencki. Prosta
+            architektura.
+          </p>
+        </section>
+
+        <section>
+          <section>
+            <h3>Nie każdego projektu</h3>
+            <p class="fragment">
+              Moje obserwacje, ale zauważam że o podobnych rzeczach ludzie mówią
+              na konferencja w kuchni
+            </p>
+            <p class="fragment">Moje Lessons Learned</p>
+          </section>
+          <aside class="notes"></aside>
+        </section>
+
+        <section>
+          <section>
+            <h3>Historia z mojego punktu widzenia</h3>
+            <p class="fragment">Przypadkowo wylądowałem w Javie</p>
+            <p class="fragment">Java Junior potrafi pisać tylko prosto</p>
+            <p class="fragment">Pracowałem w 4 microserwisach</p>
+          </section>
+          <aside class="notes"></aside>
+
+          <section>
+            <h3>Pojęcia</h3>
+            <p class="fragment">Menu</p>
+            <p class="fragment">Kuchnia</p>
+            <p class="fragment">Aggregators-hub (pyszne, ubereats)</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Jak robiłem feature (dokładałem nowego CRUDa)</h3>
+            <ul>
+              <li>POST</li>
+              <li>GET</li>
+              <li>GET list</li>
+              <li>PUT</li>
+              <li>DELETE</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>W jakiej kolejności?</h3>
+            <ul>
+              <li class="fragment">GET list</li>
+              <li class="fragment">POST</li>
+              <li class="fragment">GET</li>
+              <li class="fragment">(PUT)</li>
+              <li class="fragment"><s>DELETE</s></li>
+            </ul>
+            <aside class="notes">
+              Od razu integrować z FE, - BE nie musi był pół sprintu wcześniej.
+              Bo jeśli integrację zaczniemy w połowie sprintu to może nie
+              starczyć czasu.g
+            </aside>
+          </section>
+
+          <section>
+            <h3>
+              Lessons Learned: BE i FE musi się zmieścić w jednym sprincie
+            </h3>
+            <p class="fragment">
+              Unikamy zmian kontraktu pod koniec, FE działa na żywym organiźmie
+            </p>
+            <p class="fragment">
+              BE też szybciej dostanie prawdziwe dane, może je np na początku
+              tylko logować
+            </p>
+            <aside class="notes">
+              - BE nie musi był pół sprintu wcześniej. Bo jeśli integrację
+              zaczniemy w połowie sprintu to może nie starczyć czasu.g
+            </aside>
+          </section>
+
+          <aside class="notes"></aside>
+        </section>
+
+        <section>
+            <section>
+                <h3>Jak wyglądał taki projekt</h3>
+                <p class="fragment">Monolit "menu"+"kuchnia"</p>
+                <p class="fragment">część operacji między nimi ^ była poprzez kolejkę dla separacji</p>
+                <p class="fragment">Bez aggregatow, raczej płaskie encje wszystkie na tym samym poziomie</p>
+                <p class="fragment">Serwis domenowy, Serwis applikacyjny</p>
+                <p class="fragment">Warstwa Domain, Boundary (api), Infra (kolejki, baza, sqs, kafka etc)</p>
+                <p class="fragment">Brak wydzielonej warstwy applikacji</p>
+                <aside class="notes">
+
+                </aside>
+            </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Użyjmy biblioteki</h3>
+            <p class="fragment">Kolega chciał spróbować z GraphQL</p>
+            <p class="fragment">Bo mało wyzwań</p>
+            <p class="fragment">Zrobił prezentację</p>
+          </section>
+
+          <aside class="notes"></aside>
+
+          <section>
+            <h3>Doszło do tech leada</h3>
+            <p class="fragment">Nie używamy bo to zbyt mało nam pomoże</p>
+            <p class="fragment">Właściwie to nie mamy takie problemu</p>
+            <p class="fragment">Szybko ucięte</p>
+          </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>Czy powinniśmy wydzielić nowy microserwis?</h3>
+                <p class="fragment">Tak, ale teraz deadline, to musi poczekać</p>
+                <aside class="notes">
+
+                </aside>
+            </section>
+
+            <section>
+                <h3>Lessons Learned: świadomie pakujemy się w pewien problem wiedząc, że rozwiążemy go później</h3>
+                <p class="fragment">idealny czas: tego nie wie nikt</p>
+                <p class="fragment">wróżenie z kuli</p>
+                <p class="fragment">takie decyzje są bardzo zaleźne od kontekstu</p>
+                <aside class="notes">
+                    np przechodzą nowi ludzie, i jak to wpłynie na rozdzielanie na zespoły teraz.
+                </aside>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>Ilość środowisk</h3>
+                <p class="fragment">Na początku DEV</p>
+                <p class="fragment">Na początku DEV i PROD</p>
+                <p class="fragment">Kiedyś wszedł STAGE</p>
+            </section>
+
+            <section>
+                <h3>Ilość środowisk cd.</h3>
+                <p class="fragment">"aggregators-hub" miał tylko DEV i PROD mimo ze STAGE juz istniał</p>
+                <p class="fragment">Bo nie mogliśmy dostać środowiska STAGE od aggregatorów</p>
+                <p class="fragment">Długo się opieraliśmy żeby nie mieć testera</p>
+                <p class="fragment">Jakub Nabrdalik, Wojtek Ptak: w microserwisach w dużej skali można mieć tylko DEV i PROD</p>
+            </section>
+
+            <aside class="notes">
+
+            </aside>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>Raz zrobiłem refactoring ...</h3>
+                <p class="fragment">żeby jakaś część kodu było bardziej w lepszym serwisie applikacyjnym i przechodziła przez jakby AggregateRoot</p>
+                <p class="fragment">Po kilku tygodniach stwierdzilem, ze to bylo nie potrzebne</p>
+            </section>
+
+            <section>
+                <h3>Lessons Learned: W praktyce DDD i aggregaty są trudne i nie rozumiem czegoś</h3>
+                <p class="fragment">przepraszam</p>
+            </section>
+
+            <aside class="notes">
+
+            </aside>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>Podglądanie historii zmian menu</h3>
+                <p class="fragment">Draft i published menu</p>
+                <p class="fragment">Historia zmian jest dobra</p>
+                <p class="fragment">Optymalizacje AI, etc</p>
+                <p class="fragment">Użycie na prod i ...</p>
+            </section>
+
+            <section>
+                <h3>Performance klęknął</h3>
+                <p class="fragment">Działanie systemu nieznośnie długie</p>
+                <p class="fragment">Trzeba było się wycołać</p>
+                <p class="fragment">Czy to źle, że performance naszego rozwiązania blokuje dobre pomysły Biznesowe?</p>
+            </section>
+
+            <section>
+                <h3>Lessons Learned: funkcjonalności są "potencjalne" nie przeinwestować w tworzenie ich</h3>
+                <p class="fragment">Takie odczucia miałem też podczas implementowania innych funkcjonalności</p>
+            </section>
+
+            <aside class="notes">
+
+            </aside>
+        </section>
+
+        <section>
+          <section>
+            <h3>Performacne problem z Orderami</h3>
+            <p class="fragment">Takie encje zawsze są grube</p>
+            <p class="fragment">i jeszcze rosną</p>
+            <p class="fragment">
+              korzystają z wspólnej uber bazy różne konteksty: "call center",
+              "kuchnia"
+            </p>
+          </section>
+
+          <section>
+            <h3>Rozwiązania tymczasowe</h3>
+            <p class="fragment">tnijmy encje na mniejsze</p>
+            <p class="fragment">zabawa</p>
+
+            <aside class="notes">to wymaga zmian modelu, optymalizacja</aside>
+          </section>
+
+          <section>
+            <h3>Hirurgiczne cięcie</h3>
+            <p class="fragment">Nowy microserwis</p>
+            <p class="fragment">Nowa baza (może nosql)</p>
+            <p class="fragment">
+              Przeczytanie kafki od nowa i zbudowanie wszystkiego co potrzeba
+            </p>
+            <p class="fragment">Z "kuchni" można usuwać zbędne dane</p>
+
+            <aside class="notes">
+              w starym było wszystko, w nowym możesz sobie przeczytać tylko to
+              co chcesz.
+            </aside>
+          </section>
+
+          <section>
+            <h3>Kolejne optymalizacje?</h3>
+            <p class="fragment">
+              Można inne tabele stworzyć pod inne przypadki użycia
+            </p>
+            <p class="fragment">
+              Jest już kod do czytania wszystkiego i tworzenia nowych tabel
+            </p>
+
+            <aside class="notes"></aside>
+          </section>
+
+          <section>
+            <h3>
+              Lessons Learned: rozwiązanie performance'u na poziome
+              architektury, specjalny microserwis
+            </h3>
+            <p class="fragment">To jest opcja dopiero od pewnej skali</p>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Problemy z n+1</h3>
+            <pre class="fragment">
+@GetMapping()
+ResponseEntity<MenuDocument> getMenu(MenuId menuId) {
+    var menu = menuService.getMenu(menuId);
+
+    var menuDocument = MenuDocument.toDocument(menu);
+    return ResponseEntity.ok(menuDocument);
+}
+
+@Transactional
+@Component
+class MenuService {
+    Menu getMenu();
+}
+                </pre
+            >
+          </section>
+          <aside class="notes"></aside>
+
+          <section>
+            <h3>Tylko nie działa</h3>
+            <p class="fragment">Złe ustawienie czegoś (open-in-view=true by default)</p>
+            <aside class="notes">a moze na poczatku tak właśnie miało być</aside>
+
+          </section>
+
+          <section>
+            <h3>Chciałem stopniowo poprawiać</h3>
+            <p class="fragment">...</p>
+            <p class="fragment">pokazanie problem (ustawienie explicit) we wszystkich servicach</p>
+            <p class="fragment">zjeba na daily :)</p>
+
+            <aside class="notes">
+                jak Ola podeszła do nieoptymalizowania.
+
+            </aside>
+          </section>
+
+          <section>
+            <h3>Lessons Learned: nie warto wspominać na update'ach (daily) że się poprawia coś na boku</h3>
+            <aside class="notes">poprawiac tak, ale nie moze to zabierać czasu feature'ów</aside>
+          </section>
+
+          <section>
+            <h3>Lessons Learned: tylko z ludźmi naprawdę zmotywowanymi/bezkompromisowymi można zbudować wielkie coś</h3>
+            <aside class="notes">CW tez ma ambitnego szefa, mówię to z odległości, szukając analogii</aside>
+          </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h3>Czy to był łatwy projekt?</h3>
+                <p class="fragment">Kilka osób odeszło</p>
+                <p class="fragment">Narzekania na chaos, na PO od klienta, brak scruma</p>
+                <p class="fragment">Bycie na produkcji i szybki zwrost rekompensowały mi wszystko</p>
+                <p class="fragment">Ścigaliśmy się z czasem</p>
+            </section>
+
+            <aside class="notes">
+
+            </aside>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>Serwis klęknie i jak ten performance stabilnie poprawić</h3>
+                <p class="fragment"></p>
+            </section>
+            <aside class="notes">
+
+            </aside>
+        </section>
+
+
+        <section>
+          <h3>Dziękuję za uwagę</h3>
+          <p>Pytania na koniec?</p>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: "slide", // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          {
+            src: "lib/js/classList.js",
+            condition: function () {
+              return !document.body.classList;
+            },
+          },
+          {
+            src: "plugin/markdown/marked.js",
+            condition: function () {
+              return !!document.querySelector("[data-markdown]");
+            },
+          },
+          {
+            src: "plugin/markdown/markdown.js",
+            condition: function () {
+              return !!document.querySelector("[data-markdown]");
+            },
+          },
+          {
+            src: "plugin/highlight/highlight.js",
+            async: true,
+            callback: function () {
+              hljs.initHighlightingOnLoad();
+            },
+          },
+          { src: "plugin/zoom-js/zoom.js", async: true },
+          { src: "plugin/notes/notes.js", async: true },
+        ],
+      });
+    </script>
+
+    {% include analytics.html %}
+  </body>
+</html>
+
+<!-- 
+    podesłać linki do Nabrdalika i tego z Revoluta
+    later, skrawki kodu do kopiowania.
+-->

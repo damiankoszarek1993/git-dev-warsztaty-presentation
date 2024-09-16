@@ -1,13 +1,19 @@
-﻿<!doctype html>
+---
+cover:  img/prezentacja.jpg
+---
+
+<!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
 
-    <title>Gitwarsztaty prezentacja - Tomasz Skraskowski i Krzysztof Morcinek</title>
+    <title>GitWarsztaty prezentacja - Tomasz Skraskowski i Krzysztof Morcinek</title>
 
-    <meta name="description" content="Wprowadzenie do gita, 19 maja 2018">
+    <meta name="description" content="Git warsztaty prezentacja - wprowadzenie do Gita">
     <meta name="author" content="Krzysztof Morcinek, Tomasz Skraskowski">
+
+    {% include head.html %}
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -190,6 +196,9 @@
                         </ul>
                     </li>
                 </ul>
+				<aside class="notes">
+                    Pokazać że plik ~/.gitconfig wersjonuję
+                </aside>
             </section>
             <section>
                 <h3>Modyfikowanie konfiguracji</h3>
@@ -451,13 +460,13 @@
                         <i> - np. daa6b92[...]</i>
                     </li>
                     <li>HEAD^ - przedostatni commit
-                        <i> - np. a6bc32b[...]</i>
+                        <i> - np. daa6b92[...]</i>
                     </li>
                     <li>HEAD~3 - czwarty od końca commit
                         <i> - np. 7cb16f7[...]</i>
                     </li>
                     <li>HEAD^^^ - czwarty od końca commit
-                        <i> - np. 343ebb3[...]</i>
+                        <i> - np. 7cb16f7[...]</i>
                     </li>
                 </ul>
             </section>
@@ -481,15 +490,15 @@
                     <li class="fragment">git reset
                         <ul>
                             <small>
-                            <li class="fragment">
+                                <li class="fragment">
                                     git reset --mixed
-                            </li>
-                            <li class="fragment">
-                                git reset --soft
-                            </li>
-                            <li class="fragment">
-                                git reset --hard
-                            </li>
+                                </li>
+                                <li class="fragment">
+                                    git reset --soft
+                                </li>
+                                <li class="fragment">
+                                    git reset --hard
+                                </li>
                             </small>
                         </ul>
                     </li>
@@ -520,7 +529,7 @@
                     <li class="fragment">git clean (-d -f -n)</li>
                 </ul>
             </section>
-            
+
             <section>
                 <h4>Ćwiczenie wspólnie z demo <i>reset, revert, commit ammend</i></h4>
                 <p>
@@ -537,7 +546,7 @@
                 <img src="img/rebase-interactive-example-in-notepad.jpg">
                 <aside class="notes">
                     <b>Krzysiek</b><br>
-                    Demo, uczestnicy tylko patrzą i słuchają.
+                    Demo, uczestnicy tylko patrzą i słuchają. Demo zrobić na jakimkolwiek innym repo które wiem że się nie wywali, wrzucić adres do clonowania i hash od którego zacząć.
                     <br>
                 </aside>
             </section>
@@ -599,7 +608,7 @@
                 <aside class="notes">
                     <b>Krzysiek</b><br>
                     Pokazać na repo names-collector: przeskakiwać miedzy miejsce gdzie był a nie był plik names-collector.txt<br>
-                    zrobic wpis do README na początku i cherry-pick na aktualnego mastera
+                    zrobic wpis do README na początku i cherry-pick na aktualnego mastera. A na koniec synchronizować do origin/master
                 </aside>
             </section>
             <section>
@@ -630,9 +639,9 @@
 
             <section>
                 <h3>Git Guitar Hero</h3>
-                    <p>
-                        <img src="img/git-guitar-hero.jpg" style="border:none; box-shadow:none">
-                    </p>
+                <p>
+                    <img src="img/git-guitar-hero.jpg" style="border:none; box-shadow:none">
+                </p>
             </section>
 
             <section>
@@ -1161,7 +1170,7 @@
                     <li class="fragment">Nie kończ tytułu commita kropką</li>
                     <li class="fragment">Zapisuj tytuł w trybie rozkazującym</li>
                     <li class="fragment">Ogranicz 'szerokość' ciała do 72 znaków</li>
-                    <li class="fragment">W ciele opisz <i>co</i> i <i>dlaczego</i>, a nie <i>jak</i></li>
+                    <li class="fragment">Opisz <i>co</i> i <i>dlaczego</i>, a nie <i>jak</i></li>
                 </ol>
                 <p>
                     <small class="fragment"><i>https://chris.beams.io/posts/git-commit/</i></small>
@@ -1240,18 +1249,18 @@
             </section>
         </section>
 
-<!--        <section>-->
-<!--            <section>-->
-<!--                <p>-->
-<!--                    <img src="img/ankieta.jpg"/>-->
-<!--                </p>-->
-<!--                <aside class="notes">-->
-<!--                    Powiedzieć, że mogą do nas pisać po warsztatach na slacku, zachęcamy do ćwiczenia.-->
-<!--                    Jeżeli jest losowanie za ankietę to powiedzieć.-->
-<!--                    Powiedzieć, że teraz chwila na uzupełnienie, po czym luźne tematy na koniec.-->
-<!--                </aside>-->
-<!--            </section>-->
-<!--        </section>-->
+        <!--        <section>-->
+        <!--            <section>-->
+        <!--                <p>-->
+        <!--                    <img src="img/ankieta.jpg"/>-->
+        <!--                </p>-->
+        <!--                <aside class="notes">-->
+        <!--                    Powiedzieć, że mogą do nas pisać po warsztatach na slacku, zachęcamy do ćwiczenia.-->
+        <!--                    Jeżeli jest losowanie za ankietę to powiedzieć.-->
+        <!--                    Powiedzieć, że teraz chwila na uzupełnienie, po czym luźne tematy na koniec.-->
+        <!--                </aside>-->
+        <!--            </section>-->
+        <!--        </section>-->
 
         <!-- TOMEK -->
         <section>
@@ -1367,30 +1376,30 @@
             </section>
         </section>
 
-	<section>
-		<section>
-			<h2>Trunk Based Development</h2>
-			<p>
-			    <img src="img/trunk-based-development.jpg">
-			</p>
-		</section>
-		<section>
-			<h3>Git Flow</h3>
-			<p>
-			    <img src="img/git-flow.jpg" style="max-height:600px">
-			</p>
-		</section>
         <section>
-            <h3>Git Guitar Hero</h3>
-            <p>
-                <img src="img/git-guitar-hero.jpg" style="border:none; box-shadow:none">
-            </p>
-        </section>
+            <section>
+                <h2>Trunk Based Development</h2>
+                <p>
+                    <img src="img/trunk-based-development.jpg">
+                </p>
+            </section>
+            <section>
+                <h3>Git Flow</h3>
+                <p>
+                    <img src="img/git-flow.jpg" style="max-height:600px">
+                </p>
+            </section>
+            <section>
+                <h3>Git Guitar Hero</h3>
+                <p>
+                    <img src="img/git-guitar-hero.jpg" style="border:none; box-shadow:none">
+                </p>
+            </section>
 
-		    <section>
+            <section>
                 Pytania?
-		    </section>
-	</section>
+            </section>
+        </section>
 
         <section>
             <section>
@@ -1398,6 +1407,12 @@
                 Który to ?!
                 <p>
                     <img src="img/git-blame.jpg" style="border:none; box-shadow:none" />
+                </p>
+            </section>
+            <section>
+                <h3>Git blame w dobrym IDE jest równie wygodne jak w konsoli</h3>
+                <p>
+                    <img src="img/git-blame-rider.jpg" style="border:none; box-shadow:none" />
                 </p>
             </section>
             <section>
@@ -1458,13 +1473,13 @@
             <section>
                 <h2>Wiele remotów</h2>
                 <p>
-                    <ul style="list-style: none; line-height:190%;">
-                        <li><code>git remote add anotherOrigin https...</code></li>
-                        <li><code>git remote -v</code></li>
-                        <li><code>git push anotherOrigin</code></li>
-                        <li><code>git fetch anotherOrigin</code></li>
-                        <li><code>git push -u anotherOrigin your_branch</code></li>
-                    </ul>
+                <ul style="list-style: none; line-height:190%;">
+                    <li><code>git remote add anotherOrigin https...</code></li>
+                    <li><code>git remote -v</code></li>
+                    <li><code>git push anotherOrigin</code></li>
+                    <li><code>git fetch anotherOrigin</code></li>
+                    <li><code>git push -u anotherOrigin your_branch</code></li>
+                </ul>
                 </p>
             </section>
 
@@ -1527,8 +1542,8 @@
                         <li><code>git config --global credential.helper
                             /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret</code></li>
                     </ul>
-                    <a href="https://www.softwaredeveloper.blog/git-credential-storage-libsecret">Szerszy opis na blogu
-                        SoftwareDeveloper.Blog</a>
+                    <a href="https://www.gitwarsztaty.pl/git-credential-storage-libsecret">Szerszy opis na blogu
+                        gitwarsztaty.pl</a>
                 </small>
             </section>
 
@@ -1556,33 +1571,33 @@
             </section>
 
         </section>
-        
+
         <section>
             <h2>Strategie mergowania</h2>
             <ul style="line-height: 4">
                 <small>
-                        <li>resolve </li>
-                        <li><b>recursive</b> 
-                            <ul>
-                                <li>ours </li>
-                                <li>theirs </li>
-                                <li>patience </li>
-                                <li>diff-algorithm=[patience|minimal|histogram|myers]</li>
-                                <li>ignore-space-change </li>
-                                <li>ignore-all-space </li>
-                                <li>ignore-space-at-eol </li>
-                                <li>ignore-cr-at-eol </li>
-                                <li>renormalize </li>
-                                <li>no-renormalize </li>
-                                <li>no-renames </li>
-                                <li><b>find-renames[=<i>n</i>]</b></li>
-                                <li>rename-threshold=<i>n</i> </li>
-                                <li>subtree[=<i>path</i>] </li>
-                            </ul>
-                        </li>
-                        <li>octopus </li>
-                        <li>ours </li>
-                        <li>subtree </li>
+                    <li>resolve </li>
+                    <li><b>recursive</b>
+                        <ul>
+                            <li>ours </li>
+                            <li>theirs </li>
+                            <li>patience </li>
+                            <li>diff-algorithm=[patience|minimal|histogram|myers]</li>
+                            <li>ignore-space-change </li>
+                            <li>ignore-all-space </li>
+                            <li>ignore-space-at-eol </li>
+                            <li>ignore-cr-at-eol </li>
+                            <li>renormalize </li>
+                            <li>no-renormalize </li>
+                            <li>no-renames </li>
+                            <li><b>find-renames[=<i>n</i>]</b></li>
+                            <li>rename-threshold=<i>n</i> </li>
+                            <li>subtree[=<i>path</i>] </li>
+                        </ul>
+                    </li>
+                    <li>octopus </li>
+                    <li>ours </li>
+                    <li>subtree </li>
                 </small>
             </ul>
         </section>
@@ -1613,7 +1628,7 @@
                 <img src="img/git-hooks.jpg"/>
             </section>
         </section>
-        
+
         <section>
             <h2>Git bisect</h2>
             <h4>Automatyzacja szukania commita, który wprowadził błąd</h4>
@@ -1675,6 +1690,8 @@
         ]
     });
 </script>
+
+{% include analytics.html %}
 
 </body>
 
